@@ -95,6 +95,7 @@ public class Input {
     }
 
     public boolean isFirePrimaryWeapon() {
+
         return keyboardBitSet.get( primaryWeaponKey.ordinal());
     }
 

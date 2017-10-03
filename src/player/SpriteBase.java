@@ -32,11 +32,12 @@ public abstract class SpriteBase {
 
     PixelReader reader;
 	WritableImage newImg;
-	
+
+	int dir;
     
     boolean canMove = true;
 
-    public SpriteBase(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, double health, double damage) {
+    public SpriteBase(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr, double health, double damage, int dir) {
 
         this.layer = layer;
         this.image = image;
@@ -54,14 +55,19 @@ public abstract class SpriteBase {
         this.imageView.relocate(x, y);
         this.imageView.setRotate(r);
         
-        
-        reader = image.getPixelReader();
-        newImg = new WritableImage(reader,Settings.SIZE,0,Settings.SIZE,Settings.SIZE);
-        this.imageView.setImage(newImg);
+        this.dir = dir;
+        setDirectionImage();
         this.w = newImg.getWidth(); // imageView.getBoundsInParent().getWidth();
         this.h = newImg.getHeight(); // imageView.getBoundsInParent().getHeight();
       
         addToLayer();
+
+    }
+
+    public void setDirectionImage(){
+        reader = image.getPixelReader();
+        newImg = new WritableImage(reader,Settings.SIZE,dir * Settings.SIZE,Settings.SIZE,Settings.SIZE);
+        this.imageView.setImage(newImg);
 
     }
 
@@ -162,7 +168,9 @@ public abstract class SpriteBase {
         y += dy;
         r += dr;
 
+
     }
+
 
     public boolean isAlive() {
         return Double.compare(health, 0) > 0;
@@ -173,12 +181,21 @@ public abstract class SpriteBase {
     }
 
     public void updateUI() {
+        if (dir <= Settings.UP) setDirectionImage();
+
 
         imageView.relocate(x, y);
         imageView.setRotate(r);
 
     }
 
+    public int getDir() {
+        return dir;
+    }
+
+    public void setDir(int x){
+        dir = x;
+    }
     public double getWidth() {
         return w;
     }
