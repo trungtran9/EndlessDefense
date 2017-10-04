@@ -21,7 +21,11 @@ public class Enemy extends SpriteBase {
     public double calcArc(Player player){
         double tanx = (this.getY() - player.getY()) / (this.getX() - player.getX());
 
-        return Math.atan(tanx);
+        double arc =  Math.atan(tanx);
+        if (player.getX() < this.getX())
+            if (player.getY() > this.getY()) return (Math.PI + arc);
+        else return arc - Math.PI;
+        return arc;
     }
     public void move(Player player){
 

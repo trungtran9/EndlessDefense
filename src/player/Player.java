@@ -16,6 +16,7 @@ public class Player extends SpriteBase {
 
     public boolean fire = false;
 
+
     Input input;
 
     double speed;
@@ -47,35 +48,37 @@ public class Player extends SpriteBase {
         // ------------------------------------
         // movement
         // ------------------------------------
-        fire = false;
-        // vertical direction
-        if( input.isMoveUp()) {
-            dir = Settings.UP;
-            dy = -speed;
-        } else if( input.isMoveDown()) {
-            dy = speed;
-            dir = Settings.DOWN;
-        } else {
-            dy = 0d;
-        }
+        if (input.isMoveUp() || input.isMoveLeft() || input.isMoveRight() || input.isMoveDown())
+            setIdle(false);
+        else setIdle(true);
+            fire = false;
+            // vertical direction
+            if (input.isMoveUp()) {
+                dir = Settings.UP;
+                dy = -speed;
+            } else if (input.isMoveDown()) {
+                dy = speed;
+                dir = Settings.DOWN;
+            } else {
+                dy = 0d;
+            }
 
-        // horizontal direction
-        if( input.isMoveLeft()) {
-            dir = Settings.LEFT;
-            dx = -speed;
-        } else if( input.isMoveRight()) {
-            dx = speed;
-            dir = Settings.RIGHT;
-        } else {
-            dx = 0d;
-        }
+            // horizontal direction
+            if (input.isMoveLeft()) {
+                dir = Settings.LEFT;
+                dx = -speed;
+            } else if (input.isMoveRight()) {
+                dx = speed;
+                dir = Settings.RIGHT;
+            } else {
+                dx = 0d;
+            }
 
-        //diagonal direction
-        if (input.isMoveUp() && input.isMoveLeft()) dir = Settings.UPLEFT;
-        else if (input.isMoveUp() && input.isMoveRight()) dir = Settings.UPRIGHT;
-        else if (input.isMoveDown() && input.isMoveLeft()) dir = Settings.DOWNLEFT;
-        else if (input.isMoveDown() && input.isMoveRight()) dir = Settings.DOWNRIGHT;
-
+            //diagonal direction
+            if (input.isMoveUp() && input.isMoveLeft()) dir = Settings.UPLEFT;
+            else if (input.isMoveUp() && input.isMoveRight()) dir = Settings.UPRIGHT;
+            else if (input.isMoveDown() && input.isMoveLeft()) dir = Settings.DOWNLEFT;
+            else if (input.isMoveDown() && input.isMoveRight()) dir = Settings.DOWNRIGHT;
 
         // ----------------------------------
         // shoot

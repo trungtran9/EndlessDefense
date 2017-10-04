@@ -168,8 +168,8 @@ public class Controller {
         Image image = playerImage;
 
         // center horizontally, position at 70% vertically
-        double x = (Settings.SCENE_WIDTH - image.getWidth()) / 2.0;
-        double y = Settings.SCENE_HEIGHT * 0.7;
+        double x = Settings.SCENE_WIDTH  / 2.0;
+        double y = Settings.SCENE_HEIGHT / 2;
 
         // create player
         Player player = new Player(main.playfieldLayer, image, x, y, 0, 0, 0, 0, Settings.PLAYER_SHIP_HEALTH, 0, Settings.PLAYER_SHIP_SPEED, input, Settings.DOWN);
@@ -212,6 +212,7 @@ public class Controller {
         // random speed
         double speed = 2.0;
         int dir = rnd.nextInt(4);
+
         // x position range: enemy is always fully inside the screen, no part of it is outside
         // y position: right on top of the view, so that it becomes visible with the next game iteration
         double x = XPOS(dir);

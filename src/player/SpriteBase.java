@@ -27,8 +27,14 @@ public abstract class SpriteBase {
 
     boolean removable = false;
 
+    boolean isIdle;
+
     double w;
     double h;
+
+    int count = 0;
+    int frame = 0;
+    private int [] id = {1,2,1,0};
 
     PixelReader reader;
 	WritableImage newImg;
@@ -66,9 +72,15 @@ public abstract class SpriteBase {
 
     public void setDirectionImage(){
         reader = image.getPixelReader();
-        newImg = new WritableImage(reader,Settings.SIZE,dir * Settings.SIZE,Settings.SIZE,Settings.SIZE);
+        int toChoose = 0;
+        if (!isIdle) toChoose = count % 4;
+        newImg = new WritableImage(reader,id[toChoose] * Settings.SIZE,dir * Settings.SIZE,Settings.SIZE,Settings.SIZE);
         this.imageView.setImage(newImg);
 
+    }
+
+    public void setIdle(boolean x){
+        isIdle = x;
     }
 
     public void addToLayer() {
@@ -160,7 +172,6 @@ public abstract class SpriteBase {
     }
 
     public void move() {
-
         if( !canMove)
             return;
 
@@ -181,6 +192,8 @@ public abstract class SpriteBase {
     }
 
     public void updateUI() {
+        frame++;
+        if (frame % 10 == 0) count++;
         if (dir <= Settings.UP) setDirectionImage();
 
 
