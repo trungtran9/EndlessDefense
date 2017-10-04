@@ -6,7 +6,7 @@ import bullet.Bullet;
 import enemy.Enemy;
 import gui.Main;
 import gui.Settings;
-import javafx.animation.AnimationTimer;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -57,7 +57,7 @@ public class Controller {
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(this.frameDuration), (ActionEvent event) -> {
             nextFrame(main);
         }));
-        timeline.setCycleCount(timeline.INDEFINITE);
+        timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
         loadGame();
 

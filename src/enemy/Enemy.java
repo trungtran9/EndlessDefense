@@ -1,10 +1,7 @@
 package enemy;
 
 import gui.Settings;
-import javafx.print.PageLayout;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import player.Player;
 import player.SpriteBase;

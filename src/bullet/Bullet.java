@@ -22,26 +22,8 @@ public class Bullet {
     int frameCount;
     public boolean isEnd;
 
-    private double targetX;
-    private double targetY;
-
     Timeline timeline;
 
-    public void targetCalc(double x, double y, double dir){
-        targetX = x;
-        targetY = y;
-
-        if (dir == Settings.LEFT){
-            targetX = x - 200;
-        }
-        else if (dir == Settings.UP){
-            targetY = y - 200;
-        }
-        else if (dir == Settings.RIGHT){
-            targetY = y + 200;
-        }
-        else targetX = x + 200;
-    }
 
     public Bullet(Pane layer,double x, double y, int dir, Image img){
         this.x = x;
@@ -54,8 +36,6 @@ public class Bullet {
         addToPane();
         isEnd = false;
         frameCount = 0;
-
-        targetCalc(x,y,dir);
 
         timeline = new Timeline();
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(30),(ActionEvent event) ->{
