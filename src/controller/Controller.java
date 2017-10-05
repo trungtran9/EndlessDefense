@@ -2,6 +2,7 @@ package controller;
 
 import java.util.*;
 
+import animation.Explosion;
 import bullet.Bullet;
 import enemy.Enemy;
 import gui.Main;
@@ -240,6 +241,7 @@ public class Controller {
 
                 // remove from list
                 iter.remove();
+
             }
         }
     }

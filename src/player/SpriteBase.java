@@ -1,5 +1,6 @@
 package player;
 
+import animation.Explosion;
 import gui.Settings;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -88,7 +89,10 @@ public abstract class SpriteBase {
     }
 
     public void removeFromLayer() {
+
         this.layer.getChildren().remove(this.imageView);
+        Explosion e = new Explosion(layer,x,y);
+
     }
 
     public Pane getLayer() {
