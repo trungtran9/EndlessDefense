@@ -2,8 +2,8 @@ package gui;
 
 public class Settings {
 
-    public static double SCENE_WIDTH = 700;
-    public static double SCENE_HEIGHT = 700;
+    public static double SCENE_WIDTH = 624;
+    public static double SCENE_HEIGHT = 576;
 
     public static final int SIZE = 48;
     

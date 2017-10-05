@@ -30,6 +30,8 @@ public class Controller {
     Image playerImage;
     Image enemyImage;
 
+    Image background;
+    
     List<Player> players = new ArrayList<>();
     List<Enemy> enemies = new ArrayList<>();
 
@@ -53,6 +55,7 @@ public class Controller {
 
 	public Controller(Main main){
         frame = 0;
+                
         timeline = new Timeline();
 
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(this.frameDuration), (ActionEvent event) -> {
