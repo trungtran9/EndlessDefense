@@ -8,10 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 
 
 public class Main extends Application {
@@ -20,11 +16,10 @@ public class Main extends Application {
     public Pane playfieldLayer;
     public Pane scoreLayer;
 
-
     public Scene scene;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception{
 
         Group root = new Group();
 

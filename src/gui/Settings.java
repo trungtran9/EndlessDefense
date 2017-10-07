@@ -6,7 +6,10 @@ public class Settings {
     public static double SCENE_HEIGHT = 576;
 
     public static final int SIZE = 48;
-    
+    public static final int GRID_WIDTH = 13;
+    public static final int GRID_HEIGHT = 12;
+
+
     public static double PLAYER_SHIP_SPEED = 4.0;
     public static double PLAYER_SHIP_HEALTH = 100.0;
 
