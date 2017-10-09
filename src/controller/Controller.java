@@ -29,7 +29,7 @@ public class Controller {
     Image playerImage;
     Image enemyImage;
 
-    Image background;
+
     
     List<Player> players = new ArrayList<>();
     List<Enemy> enemies = new ArrayList<>();
@@ -117,8 +117,8 @@ public class Controller {
     }
 
     private void loadGame() {
-        playerImage = new Image( getClass().getResource("../gui/player1.png").toExternalForm());
-        enemyImage = new Image( getClass().getResource("../gui/enemy1.png").toExternalForm());
+        playerImage = new Image( getClass().getResource("../pictures/characters/player1.png").toExternalForm());
+        enemyImage = new Image( getClass().getResource("../pictures/characters/enemy1.png").toExternalForm());
     }
 
     private void createScoreLayer(Main main) {
@@ -252,7 +252,7 @@ public class Controller {
     private void checkFire(Main main) {
         if (players.get(0).fire && !reload)
         {
-            Bullet bullet = new Bullet(main.playfieldLayer, players.get(0).getX() + (Settings.SIZE / 2),players.get(0).getY() + (Settings.SIZE / 2),players.get(0).getDir(),new Image(getClass().getResource("../gui/bullet2.png").toExternalForm()));
+            Bullet bullet = new Bullet(main.playfieldLayer, players.get(0).getX() + (Settings.SIZE / 2),players.get(0).getY() + (Settings.SIZE / 2),players.get(0).getDir(),new Image(getClass().getResource("../pictures/animation/bullet2.png").toExternalForm()));
             bullets.add(bullet);
             reload = true;
             counterForReload = 0;

@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="EndlessDefense2.jar" size="267844" download="eager" />
+    <jar href="EndlessDefense2.jar" size="267520" download="eager" />
   </resources>
   <jfx:javafx-desc  width="600" height="400" main-class="gui.Main"  name="EndlessDefense2" />
   <update check="background"/>

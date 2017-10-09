@@ -2,8 +2,10 @@ package gui;
 
 import controller.Controller;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
@@ -14,7 +16,7 @@ public class Main extends Application {
 
 
     public Pane playfieldLayer;
-    public Pane scoreLayer;
+    public VBox scoreLayer;
 
     public Scene scene;
 
@@ -25,21 +27,21 @@ public class Main extends Application {
 
         // create layers
         playfieldLayer = new Pane();
-        scoreLayer = new Pane();
+        scoreLayer = new VBox();
 
         root.getChildren().add( playfieldLayer);
         root.getChildren().add( scoreLayer);
 
         scene = new Scene( root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
 
-        Image bg = new Image(getClass().getResource("../gui/Bg.png").toExternalForm());
+        Image bg = new Image(getClass().getResource("../pictures/background/Bg.png").toExternalForm());
         ImagePattern pattern = new ImagePattern(bg);
         scene.setFill(pattern);
 
-
         primaryStage.setScene( scene);
         primaryStage.show();
-        
+
+
         Controller ctrl = new Controller(this);
     }
 
