@@ -21,7 +21,7 @@ import player.Input;
 import player.Player;
 import player.SpriteBase;
 
-public class Controller {
+public class Controller{
 
     int life;
 	int score;
@@ -29,7 +29,7 @@ public class Controller {
     Image playerImage;
     Image enemyImage;
 
-
+    public boolean isOver;
     
     List<Player> players = new ArrayList<>();
     List<Enemy> enemies = new ArrayList<>();
@@ -54,13 +54,20 @@ public class Controller {
 
 	public Controller(Main main){
         frame = 0;
-
+        isOver = false;
 
         timeline = new Timeline();
 
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(this.frameDuration), (ActionEvent event) -> {
             nextFrame(main);
+            if (isOver)
+            {
+                timeline.stop();
+                gameOver();
+                main.showRestartButton();
+            }
         }));
+
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
         loadGame();
@@ -113,12 +120,12 @@ public class Controller {
 
         // update score, health, etc
         updateScore();
-
+        checkOver();
     }
 
     private void loadGame() {
-        playerImage = new Image( getClass().getResource("../pictures/characters/player1.png").toExternalForm());
-        enemyImage = new Image( getClass().getResource("../pictures/characters/enemy1.png").toExternalForm());
+        playerImage = new Image( getClass().getResource("/pictures/characters/player1.png").toExternalForm());
+        enemyImage = new Image( getClass().getResource("/pictures/characters/enemy1.png").toExternalForm());
     }
 
     private void createScoreLayer(Main main) {
@@ -131,7 +138,7 @@ public class Controller {
         score = 0;
 
         //Collision mess
-        collisionText.setFont( Font.font( null, FontWeight.BOLD, 64));
+        collisionText.setFont( Font.font( null, FontWeight.BOLD, 50));
         collisionText.setStroke(Color.BLACK);
         collisionText.setFill(Color.RED);
 
@@ -139,9 +146,9 @@ public class Controller {
         healthText.setFont( Font.font( null, FontWeight.BOLD, 30));
         healthText.setStroke(Color.BLACK);
         healthText.setFill(Color.WHITE);
-        healthText.setText("Lives: 3");
+        healthText.setText("HP: 3");
         healthText.relocate(Settings.SCENE_WIDTH - 140, 20);
-        life = 3;
+        life = 1;
 
         //Adding texts
         main.scoreLayer.getChildren().add(collisionText);
@@ -149,7 +156,7 @@ public class Controller {
         main.scoreLayer.getChildren().add(healthText);
 
         // TODO: quick-hack to ensure the text is centered; usually you don't have that; instead you have a health bar on top
-        collisionText.setText("Collision");
+        collisionText.setText("Ouch");
         double x = (Settings.SCENE_WIDTH - collisionText.getBoundsInLocal().getWidth()) / 2;
         double y = (Settings.SCENE_HEIGHT - collisionText.getBoundsInLocal().getHeight()) / 2;
         collisionText.relocate(x, y);
@@ -172,8 +179,8 @@ public class Controller {
         Image image = playerImage;
 
         // center horizontally, position at 70% vertically
-        double x = Settings.SCENE_WIDTH  / 2.0;
-        double y = Settings.SCENE_HEIGHT / 2;
+        double x = Settings.SCENE_WIDTH  / 2.0 - Settings.SIZE / 2;
+        double y = Settings.SCENE_HEIGHT / 2 - Settings.SIZE / 2;
 
         // create player
         Player player = new Player(main.playfieldLayer, image, x, y, 0, 0, 0, 0, Settings.PLAYER_SHIP_HEALTH, 0, Settings.PLAYER_SHIP_SPEED, input, Settings.DOWN);
@@ -198,7 +205,7 @@ public class Controller {
         switch (n) {
             case Settings.LEFT:
             case Settings.RIGHT:
-                return Settings.SCENE_HEIGHT / 2;
+                return Settings.SCENE_HEIGHT / 2 - Settings.SIZE;
             case Settings.UP:
                 return Settings.SCENE_HEIGHT;
         }
@@ -252,7 +259,7 @@ public class Controller {
     private void checkFire(Main main) {
         if (players.get(0).fire && !reload)
         {
-            Bullet bullet = new Bullet(main.playfieldLayer, players.get(0).getX() + (Settings.SIZE / 2),players.get(0).getY() + (Settings.SIZE / 2),players.get(0).getDir(),new Image(getClass().getResource("../pictures/animation/bullet2.png").toExternalForm()));
+            Bullet bullet = new Bullet(main.playfieldLayer, players.get(0).getX() + (Settings.SIZE / 2),players.get(0).getY() + (Settings.SIZE / 2),players.get(0).getDir(),new Image(getClass().getResource("/pictures/animation/bullet2.png").toExternalForm()));
             bullets.add(bullet);
             reload = true;
             counterForReload = 0;
@@ -302,7 +309,7 @@ public class Controller {
 
     private void updateScore() {
         if( collision) {
-            collisionText.setText("Collision");
+            collisionText.setText("Ouch");
             life -= 1;
         } else {
             collisionText.setText("");
@@ -312,4 +319,19 @@ public class Controller {
         healthText.setText("Lives: " + life);
     }
 
+    private void checkOver(){
+        if (this.life <= 0)
+            isOver = true;
+    }
+    private void gameOver(){
+        scoreText.setText("Score: ");
+        healthText.setText("Lives: ");
+        collisionText.setText("That hurts, man!");
+        double x = (Settings.SCENE_WIDTH - collisionText.getBoundsInLocal().getWidth()) / 2;
+        double y = (Settings.SCENE_HEIGHT - collisionText.getBoundsInLocal().getHeight()) / 2;
+
+        collisionText.relocate(x, y);
+
+
+    }
 }

@@ -1,3 +1,25 @@
 Manifest-Version: 1.0
+Class-Path: jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/charsets.
+ jar!/ jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/deploy.jar!/ j
+ ar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/access-bridge-64.
+ jar!/ jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/cldrdata.j
+ ar!/ jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/dnsns.jar!/
+  jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/jaccess.jar!/ j
+ ar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/jfxrt.jar!/ jar:/
+ /C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/localedata.jar!/ jar:
+ //C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/nashorn.jar!/ jar://
+ C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/sunec.jar!/ jar://C:/P
+ rogram Files/Java/jdk1.8.0_144/jre/lib/ext/sunjce_provider.jar!/ jar:
+ //C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/sunmscapi.jar!/ jar:
+ //C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/sunpkcs11.jar!/ jar:
+ //C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/zipfs.jar!/ jar://C:
+ /Program Files/Java/jdk1.8.0_144/jre/lib/javaws.jar!/ jar://C:/Progra
+ m Files/Java/jdk1.8.0_144/jre/lib/jce.jar!/ jar://C:/Program Files/Ja
+ va/jdk1.8.0_144/jre/lib/jfr.jar!/ jar://C:/Program Files/Java/jdk1.8.
+ 0_144/jre/lib/jfxswt.jar!/ jar://C:/Program Files/Java/jdk1.8.0_144/j
+ re/lib/jsse.jar!/ jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/ma
+ nagement-agent.jar!/ jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib
+ /plugin.jar!/ jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/resour
+ ces.jar!/ jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/rt.jar!/
 Main-Class: gui.Main
 

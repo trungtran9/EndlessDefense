@@ -51,16 +51,16 @@ public class Bullet {
 
     public void nextFrame(){
         frameCount++;
-        if (frameCount < 20){
+        if (frameCount < 15){
             switch (dir){
-                case Settings.UP : y -= 10.0; break;
-                case Settings.DOWN : y += 10.0; break;
-                case Settings.LEFT : x -= 10.0; break;
-                case Settings.RIGHT : x += 10.0; break;
-                case Settings.UPLEFT : x -= (10.0 / Math.sqrt(2)); y -= (10.0 / Math.sqrt(2)); break;
-                case Settings.UPRIGHT : x += 10.0 / Math.sqrt(2); y -= 10.0 / Math.sqrt(2); break;
-                case Settings.DOWNLEFT : x -= 10.0 / Math.sqrt(2); y += 10.0 / Math.sqrt(2); break;
-                case Settings.DOWNRIGHT : x += 10.0 / Math.sqrt(2); y += 10.0 / Math.sqrt(2); break;
+                case Settings.UP : y -= 18.0; break;
+                case Settings.DOWN : y += 18.0; break;
+                case Settings.LEFT : x -= 18.0; break;
+                case Settings.RIGHT : x += 18.0; break;
+                case Settings.UPLEFT : x -= (18.0 / Math.sqrt(2)); y -= (18.0 / Math.sqrt(2)); break;
+                case Settings.UPRIGHT : x += 18.0 / Math.sqrt(2); y -= 18.0 / Math.sqrt(2); break;
+                case Settings.DOWNLEFT : x -= 18.0 / Math.sqrt(2); y += 18.0 / Math.sqrt(2); break;
+                case Settings.DOWNRIGHT : x += 18.0 / Math.sqrt(2); y += 18.0 / Math.sqrt(2); break;
             }
         }
         else isEnd = true;

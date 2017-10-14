@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 public class Explosion {
 
-    final ImageView explosionImg = new ImageView(new Image( getClass().getResource("../pictures/animation/explosion.png").toExternalForm()));
+    final ImageView explosionImg = new ImageView(new Image( getClass().getResource("/pictures/animation/explosion.png").toExternalForm()));
     final int width = 80;
     final int height = 80;
     final int col = 8;
