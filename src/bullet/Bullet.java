@@ -45,13 +45,17 @@ public class Bullet {
         timeline.play();
     }
 
-    public void addToPane(){
+    void addToPane(){
         this.layer.getChildren().add(this.imageView);
+    }
+
+    boolean inBound(){
+        return false;
     }
 
     public void nextFrame(){
         frameCount++;
-        if (frameCount < 15){
+        if (frameCount < 15 || inBound()){
             switch (dir){
                 case Settings.UP : y -= 18.0; break;
                 case Settings.DOWN : y += 18.0; break;

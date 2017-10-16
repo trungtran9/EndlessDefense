@@ -25,6 +25,7 @@ public class Controller{
 
     int life;
 	int score;
+    int level;
 
     Image playerImage;
     Image enemyImage;
@@ -40,7 +41,7 @@ public class Controller{
     Text collisionText = new Text();
     Text scoreText = new Text();
     Text healthText = new Text();
-
+    Text levelText = new Text();
     boolean collision = false;
 
     public int frameDuration = 30;
@@ -134,7 +135,6 @@ public class Controller{
         scoreText.setStroke(Color.BLACK);
         scoreText.setFill(Color.WHITE);
         scoreText.setText("Score: ");
-        scoreText.relocate(20, 20);
         score = 0;
 
         //Collision mess
@@ -147,13 +147,20 @@ public class Controller{
         healthText.setStroke(Color.BLACK);
         healthText.setFill(Color.WHITE);
         healthText.setText("HP: 3");
-        healthText.relocate(Settings.SCENE_WIDTH - 140, 20);
         life = 1;
 
+        //Level
+        levelText.setFont( Font.font( null, FontWeight.BOLD, 30));
+        levelText.setStroke(Color.BLACK);
+        levelText.setFill(Color.WHITE);
+        level = 1;
+        levelText.setText("Level: " + level);
+
         //Adding texts
-        main.scoreLayer.getChildren().add(collisionText);
-        main.scoreLayer.getChildren().add(scoreText);
-        main.scoreLayer.getChildren().add(healthText);
+        main.playfieldLayer.getChildren().add(collisionText);
+        main.tileScore.getChildren().add(scoreText);
+        main.tileScore.getChildren().add(levelText);
+        main.tileScore.getChildren().add(healthText);
 
         // TODO: quick-hack to ensure the text is centered; usually you don't have that; instead you have a health bar on top
         collisionText.setText("Ouch");
@@ -316,7 +323,7 @@ public class Controller{
         }
 
         scoreText.setText("Score: " + score);
-        healthText.setText("Lives: " + life);
+        healthText.setText("HP: " + life);
     }
 
     private void checkOver(){
@@ -325,7 +332,7 @@ public class Controller{
     }
     private void gameOver(){
         scoreText.setText("Score: ");
-        healthText.setText("Lives: ");
+        healthText.setText("HP: ");
         collisionText.setText("That hurts, man!");
         double x = (Settings.SCENE_WIDTH - collisionText.getBoundsInLocal().getWidth()) / 2;
         double y = (Settings.SCENE_HEIGHT - collisionText.getBoundsInLocal().getHeight()) / 2;
