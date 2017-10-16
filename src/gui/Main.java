@@ -13,6 +13,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import javafx.scene.paint.ImagePattern;
@@ -50,17 +51,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        HBox root = new HBox();
+        Group root = new Group();
 
         subLayer = new BorderPane();
         StartMenu sm = new StartMenu(this);
-        Group mainPlay = new Group();
-        subLayer.setCenter(sm);
-        subLayer.setBottom(tileOver);
-
-        can.setWidth(Settings.SCENE_WIDTH);
-        can.setHeight(Settings.SCENE_HEIGHT);
-        gc.drawImage(bg,0,0,Settings.SCENE_WIDTH,Settings.SCENE_HEIGHT);
+        
+        //Group mainPlay = new Group();
+        
+       
+        
         // create layers
         playfieldLayer = new Pane();
 
@@ -68,28 +67,24 @@ public class Main extends Application {
         tileOver = new TilePane(Orientation.HORIZONTAL);
 
         //Score
-        tileScore = new TilePane(Orientation.VERTICAL);
-        tileScore.setAlignment(Pos.TOP_LEFT);
-        tileScore.setPrefColumns(1);
-        tileScore.setPrefWidth(200.0);
+        tileScore = new TilePane(Orientation.HORIZONTAL);
+        tileScore.setPrefHeight(200.0);
+        sm.setPrefHeight(200.0);
 
-
-
-        scoreLayer = new VBox(tileScore);
-        scoreLayer.toFront();
-        mainPlay.getChildren().add(playfieldLayer);
-        mainPlay.getChildren().add(subLayer);
-        mainPlay.getChildren().add(can);
-        can.toBack();
-
-        root.getChildren().add(scoreLayer);
-        root.getChildren().add(mainPlay);
+        subLayer.setTop(tileScore);
+        subLayer.setCenter(sm);
+        subLayer.setBottom(tileOver);
+        
+        
+        root.getChildren().add(playfieldLayer);
+        root.getChildren().add(subLayer);
 
 
 
 
-       scene = new Scene( root, Settings.SCENE_WIDTH + 200.0, Settings.SCENE_HEIGHT);
-
+       scene = new Scene( root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
+       ImagePattern background = new ImagePattern(bg);
+       scene.setFill(background);
 
 
         restart = new Button("Reset?");
