@@ -10,6 +10,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -31,7 +32,7 @@ public class Controller{
     Image enemyImage;
 
     public boolean isOver;
-    
+    boolean isWon = false;
     List<Player> players = new ArrayList<>();
     List<Enemy> enemies = new ArrayList<>();
 
@@ -61,7 +62,7 @@ public class Controller{
 
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(this.frameDuration), (ActionEvent event) -> {
             nextFrame(main);
-            if (isOver)
+            if (isOver || isWon)
             {
                 timeline.stop();
                 gameOver();
@@ -122,6 +123,7 @@ public class Controller{
         // update score, health, etc
         updateScore();
         checkOver();
+        checkFinish();
     }
 
     private void loadGame() {
@@ -161,6 +163,8 @@ public class Controller{
         main.tileScore.getChildren().add(scoreText);
         main.tileScore.getChildren().add(levelText);
         main.tileScore.getChildren().add(healthText);
+
+
 
         // TODO: quick-hack to ensure the text is centered; usually you don't have that; instead you have a health bar on top
         collisionText.setText("Ouch");
@@ -295,6 +299,7 @@ public class Controller{
                     bullet.isEnd = true;
                     enemy.setRemovable(true);
                     score += rnd.nextInt(5) + 10;
+                    break;
                 }
             }
 
@@ -330,10 +335,17 @@ public class Controller{
         if (this.life <= 0)
             isOver = true;
     }
+
+    private void checkFinish(){
+        if (this.score > 200)
+            isWon = true;
+    }
+
     private void gameOver(){
         scoreText.setText("Score: ");
         healthText.setText("HP: ");
-        collisionText.setText("That hurts, man!");
+        if (isOver) collisionText.setText("That hurts, man!");
+        else if (isWon) collisionText.setText("You win! \n Score: " + score);
         double x = (Settings.SCENE_WIDTH - collisionText.getBoundsInLocal().getWidth()) / 2;
         double y = (Settings.SCENE_HEIGHT - collisionText.getBoundsInLocal().getHeight()) / 2;
 

@@ -18,8 +18,9 @@ public class StartMenu extends VBox {
         setSpacing(15.0);
         setAlignment(Pos.CENTER);
         start.setOnAction(e->{
+            main.subLayer.getChildren().remove(this);
             main.ctrl = new Controller(main);
-            main.subLayer.getChildren().remove(this);            
+
         });
     }
 }

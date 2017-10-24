@@ -31,7 +31,8 @@ public class Main extends Application {
     Button restart;
     Button quit;
     public Scene scene;
-    public TilePane tileOver, tileScore;
+    public HBox tileOver, tileScore;
+    public StartMenu sm;
 
     Image bg = new Image(getClass().getResource("/pictures/background/Bg.png").toExternalForm());
 
@@ -41,7 +42,7 @@ public class Main extends Application {
     public void showRestartButton() {
 
         tileOver.setPadding(new Insets(20, 10, 20, 0));
-        tileOver.setHgap(10.0);
+        tileOver.setSpacing(100.0);
         tileOver.getChildren().addAll(restart,quit);
     }
 
@@ -54,7 +55,7 @@ public class Main extends Application {
         Group root = new Group();
 
         subLayer = new BorderPane();
-        StartMenu sm = new StartMenu(this);
+        sm = new StartMenu(this);
         
         //Group mainPlay = new Group();
         
@@ -64,18 +65,23 @@ public class Main extends Application {
         playfieldLayer = new Pane();
 
 
-        tileOver = new TilePane(Orientation.HORIZONTAL);
+        tileOver = new HBox();
 
         //Score
-        tileScore = new TilePane(Orientation.HORIZONTAL);
-        tileScore.setPrefHeight(200.0);
-        sm.setPrefHeight(200.0);
+        tileScore = new HBox();
 
+        subLayer.setPrefWidth(Settings.SCENE_WIDTH);
         subLayer.setTop(tileScore);
         subLayer.setCenter(sm);
         subLayer.setBottom(tileOver);
-        
-        
+
+        tileScore.setPrefHeight(Settings.SCENE_HEIGHT / 4);
+        tileOver.setPrefHeight(Settings.SCENE_HEIGHT / 4);
+        sm.setPrefHeight(Settings.SCENE_HEIGHT / 2);
+
+        subLayer.setAlignment(sm,Pos.CENTER);
+        tileOver.setAlignment(Pos.BOTTOM_CENTER);
+        tileScore.setAlignment(Pos.TOP_CENTER);
         root.getChildren().add(playfieldLayer);
         root.getChildren().add(subLayer);
 
@@ -111,10 +117,6 @@ public class Main extends Application {
 
         primaryStage.setScene( scene);
         primaryStage.show();
-
-
-
-
     }
 
     public static void main(String[] args) {
