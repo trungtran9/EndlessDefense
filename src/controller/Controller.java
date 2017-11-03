@@ -83,7 +83,9 @@ public class Controller{
 	public void nextFrame(Main main){
 
         frame++;
-
+        double chancePowerUp = rnd.nextDouble();
+        if (chancePowerUp <= Settings.POWERUP_CHANCE)
+        	spawnPowerUp();
         if (frame * this.frameDuration >= 1000) frame  = 0;
 
         if (counterForReload < 30) counterForReload++;
@@ -131,6 +133,10 @@ public class Controller{
         enemyImage = new Image( getClass().getResource("/pictures/characters/enemy1.png").toExternalForm());
     }
 
+    private void spawnPowerUp(){
+    	
+    }
+    
     private void createScoreLayer(Main main) {
         //Score
         scoreText.setFont( Font.font( null, FontWeight.BOLD, 30));
@@ -160,9 +166,10 @@ public class Controller{
 
         //Adding texts
         main.playfieldLayer.getChildren().add(collisionText);
-        main.tileScore.getChildren().add(scoreText);
-        main.tileScore.getChildren().add(levelText);
-        main.tileScore.getChildren().add(healthText);
+        main.tileScore.setLeft(scoreText);
+        
+        //main.tileScore.setCenter(levelText);
+        main.tileScore.setRight(healthText);
 
 
 

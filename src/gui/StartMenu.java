@@ -3,6 +3,7 @@ package gui;
 import controller.Controller;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class StartMenu extends VBox {
@@ -18,7 +19,7 @@ public class StartMenu extends VBox {
         setSpacing(15.0);
         setAlignment(Pos.CENTER);
         start.setOnAction(e->{
-            main.subLayer.getChildren().remove(this);
+            main.subLayer.setCenter(main.blank);            
             main.ctrl = new Controller(main);
 
         });

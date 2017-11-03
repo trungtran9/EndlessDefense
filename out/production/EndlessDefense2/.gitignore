@@ -1,8 +1,4 @@
-/FXMLdoc.fxml
-/animation/
-/bullet/
-/controller/
-/enemy/
 /gui/
+/controller/
+/power/
 /player/
-/powerup/

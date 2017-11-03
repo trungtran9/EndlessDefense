@@ -18,6 +18,8 @@ public class Settings {
 
     public static int ENEMY_SPAWN_RANDOMNESS = 100;
 
+    
+    public static double POWERUP_CHANCE = 0.1;
     //Directions
     public static final int UP = 3;
     public static final int LEFT = 1;
@@ -28,4 +30,8 @@ public class Settings {
     public static final int DOWNLEFT = 5;
     public static final int UPRIGHT = 6;
     public static final int DOWNRIGHT = 7;
+    
+    //Resources
+    
+    
 }

@@ -24,14 +24,15 @@ import javafx.stage.Stage;
 public class Main extends Application {
     public Controller ctrl;
 
-    public Pane playfieldLayer;
+    public Pane playfieldLayer,blank;
     public VBox scoreLayer;
 
     public BorderPane subLayer;
     Button restart;
     Button quit;
     public Scene scene;
-    public HBox tileOver, tileScore;
+    public HBox tileOver;
+    public BorderPane tileScore;
     public StartMenu sm;
 
     Image bg = new Image(getClass().getResource("/pictures/background/Bg.png").toExternalForm());
@@ -56,8 +57,7 @@ public class Main extends Application {
 
         subLayer = new BorderPane();
         sm = new StartMenu(this);
-        
-        //Group mainPlay = new Group();
+        blank = new Pane();
         
        
         
@@ -68,20 +68,21 @@ public class Main extends Application {
         tileOver = new HBox();
 
         //Score
-        tileScore = new HBox();
+        tileScore = new BorderPane();
 
+        tileScore.setPrefHeight(Settings.SCENE_HEIGHT / 4);             
+        tileOver.setPrefHeight(Settings.SCENE_HEIGHT / 4);
+        sm.setPrefHeight(Settings.SCENE_HEIGHT / 2);
+        blank.setPrefHeight(Settings.SCENE_HEIGHT / 2);
+        
         subLayer.setPrefWidth(Settings.SCENE_WIDTH);
         subLayer.setTop(tileScore);
         subLayer.setCenter(sm);
         subLayer.setBottom(tileOver);
 
-        tileScore.setPrefHeight(Settings.SCENE_HEIGHT / 4);
-        tileOver.setPrefHeight(Settings.SCENE_HEIGHT / 4);
-        sm.setPrefHeight(Settings.SCENE_HEIGHT / 2);
-
-        subLayer.setAlignment(sm,Pos.CENTER);
-        tileOver.setAlignment(Pos.BOTTOM_CENTER);
-        tileScore.setAlignment(Pos.TOP_CENTER);
+        
+        BorderPane.setAlignment(sm,Pos.CENTER);
+        tileOver.setAlignment(Pos.BOTTOM_CENTER);     
         root.getChildren().add(playfieldLayer);
         root.getChildren().add(subLayer);
 
@@ -97,7 +98,7 @@ public class Main extends Application {
         quit = new Button("Next time..");
         quit.setStyle("-fx-font-size: 2em; ");
         restart.setStyle("-fx-font-size: 2em; ");
-
+        
         restart.setOnAction(e -> {
             playfieldLayer.getChildren().remove(restart);
             try {
