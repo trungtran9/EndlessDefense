@@ -21,6 +21,9 @@ import javafx.util.Duration;
 import player.Input;
 import player.Player;
 import player.SpriteBase;
+import power.Wine;
+import power.powerUp;
+import power.powerValues;
 
 public class Controller{
 
@@ -33,9 +36,11 @@ public class Controller{
 
     public boolean isOver;
     boolean isWon = false;
+    
     List<Player> players = new ArrayList<>();
     List<Enemy> enemies = new ArrayList<>();
-
+    List<powerUp> power = new ArrayList<>();
+    
     List<Bullet> bullets = new ArrayList<>();
     Iterator<Bullet> b;
 
@@ -85,7 +90,7 @@ public class Controller{
         frame++;
         double chancePowerUp = rnd.nextDouble();
         if (chancePowerUp <= Settings.POWERUP_CHANCE)
-        	spawnPowerUp();
+        	spawnPowerUp(main);
         if (frame * this.frameDuration >= 1000) frame  = 0;
 
         if (counterForReload < 30) counterForReload++;
@@ -133,7 +138,11 @@ public class Controller{
         enemyImage = new Image( getClass().getResource("/pictures/characters/enemy1.png").toExternalForm());
     }
 
-    private void spawnPowerUp(){
+    private void spawnPowerUp(Main main){
+    	Wine wine = new Wine(powerValues.wineImg,powerValues.wineSpeed,powerValues.defaultDuration,powerValues.defaultExistence);
+    	power.add(wine);
+    	main.playfieldLayer.getChildren().add(wine.imageView);
+    	wine.imageView.relocate(rnd.nextDouble() * Settings.GRID_WIDTH, rnd.nextDouble() * Settings.GRID_HEIGHT);
     	
     }
     
@@ -229,6 +238,7 @@ public class Controller{
         }
         return 0;
     }
+    
     private void spawnEnemies(boolean random,Main main) {
 
         if(random && rnd.nextInt(Settings.ENEMY_SPAWN_RANDOMNESS) != 0) {
